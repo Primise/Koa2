@@ -5,9 +5,11 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const config = require('./config/init.js')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const singup = require('./routes/singup')
 
 // error handler
 onerror(app)
@@ -35,6 +37,7 @@ app.use(async (ctx, next) => {
 
 
 // routes
+app.use(singup.routes(), singup.allowedMethods())
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 
