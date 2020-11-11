@@ -1,9 +1,12 @@
 
-const router = require('koa-router')()
-
-router.prefix('/singup')
-router.get('/register', function (ctx, next) {
-  ctx.body = '注册'
+const router = require('koa-router')({
+  prefix:'/api'
 })
 
-module.exports = router
+const controller = require("../controller/public/register")
+router.get('/', (ctx)=>{
+  ctx.body='默认接口'
+})
+router.post('/register',controller.registerData)
+
+module.exports = router;
