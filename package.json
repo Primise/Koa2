@@ -22,7 +22,8 @@
     "koa-views": "^6.2.0",
     "mysql": "^2.18.1",
     "pug": "^2.0.3",
-    "redis": "^3.0.2"
+    "redis": "^3.0.2",
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

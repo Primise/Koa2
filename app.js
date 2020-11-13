@@ -5,7 +5,9 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-const config = require('./config/init.js')
+
+require('./sequelize')
+
 
 const index = require('./routes/index')
 const users = require('./routes/users')
