@@ -1,4 +1,11 @@
-const router = require('koa-router')()
+const router = require('koa-router')({
+  prefix:'/api'
+});
+
+const Article = require('../controller/article');
+/**
+ * 所有路由接口
+*/
 
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
@@ -16,4 +23,9 @@ router.get('/json', async (ctx, next) => {
   }
 })
 
-module.exports = router
+// Article
+router.get('/article/list', Article.getArticleList);
+
+
+
+module.exports =router;
