@@ -6,10 +6,9 @@ const Article = require('../model/article');
 const getArticleList = async (ctx) => {
   const data = await Article.findAll({
     where: {
-      name: "zzz"
+      title: "primise"
     }
   });
-  // console.log(data)
   ctx.body = {
     code: 0,
     data
@@ -18,7 +17,7 @@ const getArticleList = async (ctx) => {
 
 //添加文章
 const addArticle= async(ctx)=>{
-
+   
 }
 
 
