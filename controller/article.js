@@ -5,9 +5,10 @@ const Article = require('../model/article');
 // 前台文章列表
 const getArticleList = async (ctx) => {
   const data = await Article.findAll({
-    where: {
-      title: "primise"
-    }
+    // attributes: ['author', 'title',"id"]
+    // where: {
+    //   title: ""
+    // }
   });
   ctx.body = {
     code: 0,
