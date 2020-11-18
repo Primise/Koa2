@@ -1,11 +1,11 @@
 const Article = require('../model/article');
-
+// const{responseClient} =  require("../utils/utils") 
 
 
 // 前台文章列表
-const getArticleList = async (ctx) => {
+const getArticleList = async (req,res) => {
   const data = await Article.findAll({});
-
+  //  responseClient(res,0,'操作成功',data)
   ctx.body = {
     code: 0,
     data
