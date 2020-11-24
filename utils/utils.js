@@ -2,8 +2,8 @@
 /*
  * @Author: primise
  * @Date: 2020-11-18 22:32:09
- * @LastEditTime: 2020-11-18 22:51:43
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-19 15:39:21
+ * @LastEditors: Andy
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\utils\utils.js
  */
@@ -18,5 +18,9 @@
   //    responseData.data=data;
   //    res.status(httpCode).json(responseData)
   //  }
+    timeStamp(){
+        
+    }
+  
  }
 

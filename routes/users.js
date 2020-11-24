@@ -12,4 +12,5 @@ router.get('/bar', function (ctx, next) {
 })
 router.post('/add',user.addUser)
 
-module.exports = router
+
+module.exports = router;

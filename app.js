@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: primsie7
+ * @Date: 2020-11-17 09:12:08
+ * @LastEditors: Andy
+ * @LastEditTime: 2020-11-19 13:38:32
+ */
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -42,4 +50,4 @@ app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
 
-module.exports = app
+module.exports = app;
