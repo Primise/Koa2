@@ -25,7 +25,7 @@ const response = require('./middleware/response')
 onerror(app)
 
 // middlewares
-app.use(response())
+app.use(response());
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))

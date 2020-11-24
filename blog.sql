@@ -30,7 +30,7 @@ CREATE TABLE `articles`(
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `author` varchar(100) NOT NULL,
-  `read_count` int(10) NOT NULL DEFAULT 0, --阅读数
+  `read_count` int(10) NOT NULL DEFAULT 0, 
   `image_url` text NOT NULL,
   `description` varchar(255) NOT NULL DEFAULT '',
   `create_time` int(12) unsigned NOT NULL DEFAULT '0',
