@@ -1,15 +1,15 @@
+/*
+ * @Description: 
+ * @Author: primsie7
+ * @Date: 2020-11-19 11:16:16
+ * @LastEditTime: 2020-11-24 15:04:56
+ */
 const Article = require('../model/article');
-// const{responseClient} =  require("../utils/utils") 
-
 
 // 前台文章列表
-const getArticleList = async (req,res) => {
+const getArticleList = async (ctx) => {
   const data = await Article.findAll({});
-  //  responseClient(res,0,'操作成功',data)
-  ctx.body = {
-    code: 0,
-    data
-  }
+  ctx.success(data);
 };
 
 //添加文章

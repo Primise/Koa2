@@ -3,8 +3,8 @@
  * @version: 
  * @Author: primsie7
  * @Date: 2020-11-17 09:12:08
- * @LastEditors: Andy
- * @LastEditTime: 2020-11-19 13:38:32
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-24 14:20:42
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -17,13 +17,19 @@ const logger = require('koa-logger')
 
 const index = require('./routes/index')
 
+
+
+const response = require('./middleware/response')
+
 // error handler
 onerror(app)
 
 // middlewares
+app.use(response())
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
+
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
