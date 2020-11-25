@@ -4,7 +4,7 @@
  * @Author: primsie7
  * @Date: 2020-11-17 09:12:08
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 14:20:42
+ * @LastEditTime: 2020-11-25 22:49:24
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -13,6 +13,12 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const jwtKoa  = require("koa-jwt")
+const cors = require("koa-cors");
+
+//引入中间件
+const err= require("./middleware/error");
+
 
 
 const index = require('./routes/index')
@@ -25,6 +31,7 @@ const response = require('./middleware/response')
 onerror(app)
 
 // middlewares
+app.use(err());
 app.use(response());
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
@@ -38,6 +45,13 @@ app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
 
+// 去除一些不需要通过jwt验证的接口
+
+app.use(
+  jwtKoa({secret:"blog"}).unless({
+    path:[/^\/api\/login/,/^\api\/register/]
+  })
+)
 
 // logger
 app.use(async (ctx, next) => {
