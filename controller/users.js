@@ -1,30 +1,34 @@
 /*
  * @Author: your name
  * @Date: 2020-11-14 14:52:20
- * @LastEditTime: 2020-11-24 22:19:01
+ * @LastEditTime: 2020-11-26 23:13:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\controller\users.js
  */
-const User = require('../model/article');
-
-
+const User = require('../model/user');
+const Op = require('sequelize').Op
 /**
- * 注册
+ * 登录
  * @params数据
 */
-exports.addUser = async ctx=>{
-  let {name,pass} = ctx.request.body;
-  console.log(name,pass);
+const login = async (ctx) => {
+  let {user_name,password} = ctx.request.body;
+  if (!user_name||!user_name) {
+    ctx.fail( '用户名或密码不能为空',-1);
+    return;
+  }
+  const data = await User.findOne({
+    where: {
+      user_name: {
+        [Op.eq]: `${user_name}`
+      },
+      password: password
+    }
+  })
+  data?ctx.success(data):ctx.fail("用户名或密码错误",-1)
 
-  // user.addUser(name,pass).then(res=>{
-  //   console.log('注册成功'+res);
-  //   ctx.body={
-  //     code:0,
-  //     data:{
-  //       name:name,
-  //       pass:pass,
-  //     }
-  //   }
-  // })
-} 
+};
+module.exports={
+  login
+}

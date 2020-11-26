@@ -4,7 +4,7 @@
  * @Author: primsie7
  * @Date: 2020-11-17 09:12:08
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-25 22:49:24
+ * @LastEditTime: 2020-11-26 22:45:50
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -49,7 +49,8 @@ app.use(views(__dirname + '/views', {
 
 app.use(
   jwtKoa({secret:"blog"}).unless({
-    path:[/^\/api\/login/,/^\api\/register/]
+    path:[/^\/api\/login/,/^\/api\/register/]
+    // path: [/^\/api\/admin\/login/, /^\/api\//]
   })
 )
 

@@ -14,12 +14,13 @@ CREATE TABLE `数据库表名`(
 ) 
 
 -- 创建user表 （如果数据库不存在就创建如果存在就不做任何操作）
-DROP TABLE IF EXISTS `user` 
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `users` 
+CREATE TABLE `users` (
  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
- `username` varchar(100) NOT NULL,
+ `user_name` varchar(100) NOT NULL,
+  `true_name` varchar(100) NOT Null,
  `password` varchar(100) NOT Null,
- `create_time` int(12) unsigned NOT NULL DEFAULT '0',
+ `create_time` int(12) unsigned NOT NULL DEFAULT null,
  PRIMARY KEY(`id`) 
 )ENGINE=InnoDB AUTO_INCREMENT= 5 DEFAULT CHARSET=utf8mb4;
 
