@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-11-13 22:50:25
+ * @LastEditTime: 2020-11-26 23:25:22
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Koa2\sequelize.js
+ */
 const Sequelize  = require('sequelize');
 const config = require('./config/init');
 const {database,username, password,host} = config.mysql;
@@ -11,7 +19,7 @@ const {database,username, password,host} = config.mysql;
  * @type{Sequelize}
 */
 
-const sequelize = new Sequelize (database,username, password, {
+const sequelize = new Sequelize (database,username, password,  {
   host: host,   
   dialect: 'mysql',
   pool: {
@@ -22,7 +30,8 @@ const sequelize = new Sequelize (database,username, password, {
   define: {
     freezeTableName: true,//禁止自动修改表名
     timestamps: false,//不需要添加 createdAt 和 updatedAt 两个时间戳字段
-}
+},
+query: { raw:true }
 });
 module.exports = sequelize;
 

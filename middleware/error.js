@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-11-25 22:40:53
- * @LastEditTime: 2020-11-25 22:48:32
- * @LastEditors: your name
+ * @LastEditTime: 2020-11-26 23:30:05
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\middleware\error.js
  */
@@ -24,6 +24,7 @@ module.exports = function(){
       const token = ctx.header.authorization;
       if(token){
         let payload;
+        console.log(token)
          try {
           payload = await verify(token,split(" ")[1],"blog");
           ctx.user={
