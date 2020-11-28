@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-13 22:50:25
- * @LastEditTime: 2020-11-26 23:25:22
+ * @LastEditTime: 2020-11-28 23:07:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\sequelize.js
@@ -33,6 +33,12 @@ const sequelize = new Sequelize (database,username, password,  {
 },
 query: { raw:true }
 });
+//测试数据库链接
+sequelize.authenticate().then(()=>{
+  console.log("数据库链接成功")
+}).catch((err=>{
+   throw err;
+}))
 module.exports = sequelize;
 
 
