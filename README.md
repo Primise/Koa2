@@ -21,6 +21,10 @@
 
 下载 jsonwebtoken(实现jwt) koa-jwt(jwt的koa中间件) util(工具类)
 
+
+这里分别使用了两种方式对用户登录信息存储做处理
+暂时讲述一种 koa-session2+ioredis
+
 koa-session 作为登录用户信息存储
  
 

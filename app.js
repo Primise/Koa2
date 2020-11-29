@@ -4,7 +4,7 @@
  * @Author: primsie7
  * @Date: 2020-11-17 09:12:08
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-28 23:11:45
+ * @LastEditTime: 2020-11-29 22:16:24
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -15,23 +15,36 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const jwtKoa  = require("koa-jwt")
 const cors = require("koa-cors");
-const session = require('koa-session');
+
 //引入中间件
 const err= require("./middleware/error");
 
 
+app.keys = ['im a newer secret', 'i like turtle'];
+//session
+// const session = require('koa-session2');
+// const Store = require("./utils/redisStore");
+// // 配置
+// app.use(session({
+//   store:new Store(),
+//   key:"koa:sess",
+// }));
+
+
+
+
 // koa-session
-app.keys = ['some secret hurr']
-const CONFIG = {
-  key:'koa:sess',    /*cookie key (default is koa:sess)*/
-  maxAge:86400000,   /*cookie 的过期时间maxAge in ms (default is 1 days)*/
-  overwrite:true,   /*是否可以overwrite (默认default true)*/
-  httpOnly:true,    /*cookie 是否只有服务器端可以访问httpOnly or not (default true)*/
-  signed:true,    /*默认签名*/
-  rolling:false,    /*在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）*/
-  renew:true,    /*当cookie快过期时请求,会重置cookie的过期时间*/
-}
-app.use(session(CONFIG, app))
+// app.keys = ['some secret hurr']
+// const CONFIG = {
+//   key:'koa:sess',    /*cookie key (default is koa:sess)*/
+//   maxAge:86400000,   /*cookie 的过期时间maxAge in ms (default is 1 days)*/
+//   overwrite:true,   /*是否可以overwrite (默认default true)*/
+//   httpOnly:true,    /*cookie 是否只有服务器端可以访问httpOnly or not (default true)*/
+//   signed:true,    /*默认签名*/
+//   rolling:false,    /*在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）*/
+//   renew:true,    /*当cookie快过期时请求,会重置cookie的过期时间*/
+// }
+// app.use(session(CONFIG, app))
 
 const index = require('./routes/index')
 
@@ -44,6 +57,7 @@ onerror(app)
 
 // middlewares
 app.use(err());
+app.use(cors())
 app.use(response());
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
@@ -61,8 +75,8 @@ app.use(views(__dirname + '/views', {
 
 app.use(
   jwtKoa({secret:"blog"}).unless({
-    path:[/^\/api\/login/,/^\/api\/register/]
-    // path: [/^\/api\/admin\/login/, /^\/api\//]
+    // path:[/^\/api\/login/,/^\/api\/register/]
+    path: [/^\/api\/login/, /^\/api\//]
   })
 )
 
