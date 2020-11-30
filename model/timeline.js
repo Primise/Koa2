@@ -4,7 +4,6 @@ const sequelize = require('../sequelize');
 
 
 //创建时间轴数据库模型
-
 let TimeLine = sequelize.define('time_line',{
   id:{
     type:Sequelize.INTEGER(11),
@@ -26,10 +25,9 @@ let TimeLine = sequelize.define('time_line',{
 },{
   freezeTableName:true
 });
-
-
-
 TimeLine.sync({force:false});
+
+
 module.exports= TimeLine;
 
 
