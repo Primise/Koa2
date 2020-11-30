@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 22:19:11
- * @LastEditTime: 2020-11-26 22:59:50
+ * @LastEditTime: 2020-11-29 18:53:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\model\user.js
@@ -17,7 +17,7 @@ const sequelize = require('../sequelize');
 //创建Model数据库模型
 let User = sequelize.define('user',{
   id:{
-    type:Sequelize.STRING(11),
+    type:Sequelize.INTEGER(11),
     primaryKey: true,
     autoIncrement: true
   },

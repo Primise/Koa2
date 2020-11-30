@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-25 22:40:53
- * @LastEditTime: 2020-11-26 23:30:05
+ * @LastEditTime: 2020-11-29 21:47:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\middleware\error.js
@@ -26,7 +26,7 @@ module.exports = function(){
         let payload;
         console.log(token)
          try {
-          payload = await verify(token,split(" ")[1],"blog");
+          payload = await verify(token,split(" ")[1],secret);
           ctx.user={
             username:payload.username,
             id:payload.id
@@ -37,6 +37,7 @@ module.exports = function(){
       }
       await next(); 
     }catch(err){
+      console.log(err)
       if(err.status=== 401){
         ctx.status= 401;
         ctx.body={

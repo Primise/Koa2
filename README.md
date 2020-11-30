@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-24 21:14:46
- * @LastEditTime: 2020-11-25 22:51:40
- * @LastEditors: your name
+ * @LastEditTime: 2020-11-28 23:05:19
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\README.md
 -->
@@ -20,6 +20,12 @@
 ## 文中使用jsonwebtoken 作为用户身份认证
 
 下载 jsonwebtoken(实现jwt) koa-jwt(jwt的koa中间件) util(工具类)
+
+
+这里分别使用了两种方式对用户登录信息存储做处理
+暂时讲述一种 koa-session2+ioredis
+
+koa-session 作为登录用户信息存储
  
 
 
