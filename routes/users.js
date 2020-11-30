@@ -7,7 +7,10 @@ router.get('/', function (ctx, next) {
   ctx.body = 'this is a users response!'
 })
 
-router.post('/add',user.addUser)
+router.get('/bar', function (ctx, next) {
+  ctx.body = 'this is a users/bar response'
+})
 
+router.post('/add',user.addUser);
 
 module.exports = router;

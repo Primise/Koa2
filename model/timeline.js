@@ -1,8 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../sequelize');
 
-
-
 //创建时间轴数据库模型
 let TimeLine = sequelize.define('time_line',{
   id:{
