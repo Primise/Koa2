@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-25 22:40:53
- * @LastEditTime: 2020-11-29 21:47:27
+ * @LastEditTime: 2020-11-30 15:44:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\middleware\error.js
@@ -17,19 +17,17 @@ const secret= "blog";
 /**
  * 判断token
 */
-
 module.exports = function(){
   return async function(ctx,next){
     try{
       const token = ctx.header.authorization;
       if(token){
         let payload;
-        console.log(token)
          try {
           payload = await verify(token,split(" ")[1],secret);
           ctx.user={
-            username:payload.username,
-            id:payload.id
+            user_name:payload.user_name,
+            admin:payload.admin
           };
          } catch (error) {
            console.log("token verify fail: "+error)
