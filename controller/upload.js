@@ -2,7 +2,7 @@
  * @Description: 上传图片
  * @Author: primsie7
  * @Date: 2020-12-03 11:09:47
- * @LastEditTime: 2020-12-03 11:37:26
+ * @LastEditTime: 2020-12-03 18:19:57
  */
 const fs = require("fs");
 const path = require("path");

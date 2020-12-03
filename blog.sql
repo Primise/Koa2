@@ -20,7 +20,8 @@ CREATE TABLE `users` (
  `user_name` varchar(100) NOT NULL,
   `true_name` varchar(100) NOT Null,
  `password` varchar(100) NOT Null,
- `create_time` int(12) unsigned NOT NULL DEFAULT null,
+  `create_time` int(12) unsigned NOT NULL DEFAULT '0',
+  `update_time` int(12) unsigned NOT NULL DEFAULT '0',
  PRIMARY KEY(`id`) 
 )ENGINE=InnoDB AUTO_INCREMENT= 5 DEFAULT CHARSET=utf8mb4;
 
