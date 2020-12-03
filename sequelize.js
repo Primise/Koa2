@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-13 22:50:25
- * @LastEditTime: 2020-11-28 23:07:50
+ * @LastEditTime: 2020-12-03 11:03:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\sequelize.js
@@ -27,6 +27,7 @@ const sequelize = new Sequelize (database,username, password,  {
       min: 0,      
       idle: 30000  
   },
+  timezone:'+08:00',//东八时区
   define: {
     freezeTableName: true,//禁止自动修改表名
     timestamps: false,//不需要添加 createdAt 和 updatedAt 两个时间戳字段
@@ -34,6 +35,12 @@ const sequelize = new Sequelize (database,username, password,  {
 query: { raw:true }
 });
 //测试数据库链接
+try {
+   await sequelize.authenticate();
+   console.log("Connection has been established successfully")
+} catch (error) {
+  console.error("Unable to connect to the database "+error)
+}
 sequelize.authenticate().then(()=>{
   console.log("数据库链接成功")
 }).catch((err=>{
