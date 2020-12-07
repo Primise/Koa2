@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-13 22:50:25
- * @LastEditTime: 2020-12-03 11:03:05
+ * @LastEditTime: 2020-12-04 22:50:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\sequelize.js
@@ -35,12 +35,12 @@ const sequelize = new Sequelize (database,username, password,  {
 query: { raw:true }
 });
 //测试数据库链接
-try {
-   await sequelize.authenticate();
-   console.log("Connection has been established successfully")
-} catch (error) {
-  console.error("Unable to connect to the database "+error)
-}
+// try {
+//    await sequelize.authenticate();
+//    console.log("Connection has been established successfully")
+// } catch (error) {
+//   console.error("Unable to connect to the database "+error)
+// }
 sequelize.authenticate().then(()=>{
   console.log("数据库链接成功")
 }).catch((err=>{
