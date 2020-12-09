@@ -25,22 +25,24 @@ router.get('/', async (ctx, next) => {
 /**
  * 用户操作
  */ 
+//用户登录
 router.post('/login', User.login)
-
+// router.post('/user/login', User.register)
 /**
  * Article 文章
  */ 
-
-//列表
+//文章列表
 router.get('/article/list', Article.getArticleList)
 //详情
 // router.get('/article/detail:id', Article.articleDetail)
-
 // router.post('/article/add', Article.getArticleList)
 // router.get('/article/list', Article.getArticleList)
 
+/**
+ * Category 文章
+ */ 
 
-
+ 
 
 /**
  * 上传图片
