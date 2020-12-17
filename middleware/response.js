@@ -2,7 +2,7 @@
  * @Description:接口返回数据统一处理
  * @Author: primsie7
  * @Date: 2020-11-24 13:56:17
- * @LastEditTime: 2020-11-29 21:03:31
+ * @LastEditTime: 2020-12-09 14:03:14
  */
 
 module.exports = function (options = {}) {
@@ -13,12 +13,13 @@ module.exports = function (options = {}) {
      * @params {*} data
      * @params {*} msg
      */
-    ctx.success = function (data, msg) {
+    ctx.success = function (data,page, msg) {
       ctx.type = options.type || "json";
       ctx.body = {
         code: options.successCode || "0",
-        msg: msg,
+        msg: msg || "操作成功",
         data: data,
+        page:page
       };
     };
     /**

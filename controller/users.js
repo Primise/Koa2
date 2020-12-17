@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-14 14:52:20
- * @LastEditTime: 2020-11-30 14:38:14
+ * @LastEditTime: 2020-12-09 10:51:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\controller\users.js
@@ -42,6 +42,10 @@ const login = async (ctx) => {
 
 
 };
+const logout = async(ctx)=>{
+  
+}
 module.exports = {
-  login
+  login,
+  logout
 }

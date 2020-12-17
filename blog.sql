@@ -29,7 +29,7 @@ CREATE TABLE `users` (
 -- 创建文章列表
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles`(
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id`  varchar(32),
   `title` varchar(100) NOT NULL,
   `author` varchar(100) NOT NULL,
   `read_count` int(10) NOT NULL DEFAULT 0, 
