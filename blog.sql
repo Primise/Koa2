@@ -45,3 +45,17 @@ CREATE TABLE `articles`(
 INSERT INTO `articles` VALUES ('1','第一篇博客','primise',12,'https://yanxuan.nosdn.127.net/31da695c84cabd0eaff054265da29e5c.jpg?imageView&quality=75&thumbnail=750x0','测试内容','1242142681','1242976699',1)
 
 
+
+DROP TABLE IF EXISTS `blog_category`;
+CREATE TABLE `blog_category` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `category_id` int(11) NULL COMMENT '',
+    `uid` int(11) NULL COMMENT '所属用户ID',
+    `sort` int(11) NULL COMMENT '排序',
+    `category_name` varchar(255) NULL COMMENT '分类名称',
+    `category_description` varchar(255) NULL COMMENT '描述',
+    `status` tinyint(1) NULL DEFAULT '0' COMMENT '状态 0开 1关',
+    `create_time` bigint(20) NULL COMMENT '创建时间',
+    `update_time` bigint(20) NULL COMMENT '更新时间',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB COMMENT '系统-博客文章分类表';

@@ -12,8 +12,6 @@ const Sequelize = require('sequelize');
 const sequelize = require('../sequelize');
 
 
-
-
 //创建Model数据库模型
 let User = sequelize.define('user',{
   id:{
