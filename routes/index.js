@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 21:14:46
- * @LastEditTime: 2020-12-03 11:09:34
+ * @LastEditTime: 2020-12-20 21:19:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\routes\index.js
@@ -13,6 +13,8 @@ const router = require('koa-router')({
 const Article = require('../controller/article');
 const User = require('../controller/users');
 const UploadServer = require('../controller/upload') 
+const CategoryServer = require('../controller/category') 
+console.log(CategoryServer)
 /**
  * 所有路由接口
 */
@@ -35,13 +37,14 @@ router.post('/login', User.login)
 router.get('/article/list', Article.getArticleList)
 //详情
 // router.get('/article/detail:id', Article.articleDetail)
-// router.post('/article/add', Article.getArticleList)
+router.post('/article/add', Article.articleAdd)
 // router.get('/article/list', Article.getArticleList)
 
 /**
  * Category 文章
  */ 
-
+router.get('/category/list', CategoryServer.categoryList)
+router.post('/category/add', CategoryServer.addCategory)
  
 
 /**

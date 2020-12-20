@@ -2,30 +2,11 @@
  * @Description:
  * @Author: primsie7
  * @Date: 2020-11-19 11:16:16
- * @LastEditTime: 2020-12-09 14:03:07
+ * @LastEditTime: 2020-12-20 21:27:01
  */
 const ArticleModel = require("../model/article");
+const Op = require('sequelize').Op
 
-// 前台文章列表
-// const getArticleList = async (ctx) => {
-//   const data = await Article.findAndCountAll({});
-//   // console.log(data)
-
-//   ctx.success(data.rows,'操作成功');
-// };
-
-// //添加文章
-// const addArticle= async(ctx)=>{
-
-// };
-// //修改文章
-// const updateArticle= async(ctx)=>{
-
-// };
-// //删除文章
-// const delArticle = async(ctx)=>{
-
-// }
 
 class Article {
 
@@ -50,6 +31,40 @@ class Article {
       total:data.count
     }
     ctx.success(data.rows,page, "操作成功");
+  }
+  static async articleAdd(ctx){
+    console.log(ctx.request.body)
+    const {
+      title,
+      author,
+      description,
+      // article_id,
+      tag,
+      // cover,
+      content,
+    }= ctx.request.body;
+    let params = {
+      title,
+      author,
+      description,
+      // article_id,
+      tag,
+      // cover,
+      content,
+  };
+    const [article,created] = await ArticleModel.findOrCreate({
+      where:{
+        title:{
+          [Op.eq]:params.title
+        }
+      },
+      defaults:{...params}
+    });
+    if(created){
+      ctx.success(0,null,"新增成功")
+    }else{
+      ctx.fail("字段已存在",-1)
+    }
   }
 }
 module.exports = Article;

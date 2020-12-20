@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-14 14:52:20
- * @LastEditTime: 2020-12-09 10:51:06
+ * @LastEditTime: 2020-12-19 23:37:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\controller\users.js
@@ -32,7 +32,7 @@ const login = async (ctx) => {
       username: user_name,
       admin: true
     }
-    // ctx.session.userInfo= data; 
+    ctx.session.userInfo= data; 
     const token = jwt.sign(payload, "blog", { expiresIn: '1h' });
     data.token = token;
     ctx.success(data)

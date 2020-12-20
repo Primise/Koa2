@@ -1,6 +1,7 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../sequelize');
 
+const {Sequelize,DataTypes} = require('sequelize');
+const sequelize = require('../sequelize');
+const moment  =require('moment')
 //创建Model数据库模型
 
 let Article = sequelize.define('articles', {
@@ -12,6 +13,11 @@ let Article = sequelize.define('articles', {
     primaryKey: true,
     autoIncrement: true
   },
+  article_id:{
+    type: Sequelize.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    allowNull: false
+  },
   title: {
     allowNull: false,
     type: Sequelize.STRING(255),
@@ -20,11 +26,31 @@ let Article = sequelize.define('articles', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
+  keywords:Sequelize.STRING,
   author: Sequelize.STRING,
+  category: Sequelize.STRING,
+  tag: Sequelize.STRING,
   description: Sequelize.TEXT,
-  image_url:Sequelize.TEXT,
-  create_time: Sequelize.INTEGER,
-  update_time: Sequelize.INTEGER,
+  content:{
+    type:Sequelize.TEXT,
+  },
+  image_url:Sequelize.STRING,
+  create_time: {
+    type: Sequelize.DATE,
+    field: 'create_time',
+    defaultValue:Sequelize.NOW,
+    get() {
+      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+    },
+  },
+  update_time: {
+    type: Sequelize.DATE,
+    field: 'update_time',
+    defaultValue:Sequelize.NOW,
+    get() {
+      return moment(this.getDataValue('update_time')).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
   is_delete:Sequelize.STRING
 },
   {
