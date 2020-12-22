@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 21:14:46
- * @LastEditTime: 2020-12-20 21:19:55
+ * @LastEditTime: 2020-12-22 11:05:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\routes\index.js
@@ -12,8 +12,9 @@ const router = require('koa-router')({
 
 const Article = require('../controller/article');
 const User = require('../controller/users');
-const UploadServer = require('../controller/upload') 
 const CategoryServer = require('../controller/category') 
+const UploadServer = require("../controller/upload")
+const UploadToken = require("../utils/token")
 console.log(CategoryServer)
 /**
  * 所有路由接口
@@ -50,6 +51,6 @@ router.post('/category/add', CategoryServer.addCategory)
 /**
  * 上传图片
  */
- router.post("/upload",UploadServer.upload)
-
+ router.post("/image/upload",UploadServer.upload)
+ router.get("/token",UploadToken.token)
 module.exports =router;
