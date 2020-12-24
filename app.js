@@ -4,7 +4,7 @@
  * @Author: primsie7
  * @Date: 2020-11-17 09:12:08
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-12-22 22:37:05
+ * @LastEditTime: 2020-12-24 23:22:12
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -15,13 +15,13 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const jwtKoa  = require("koa-jwt")
 const cors = require("koa-cors");
-const koaBody = require('koa-body'); //解析上传文件的插件
-app.use(koaBody({
-        multipart: true,
-        formidable: {
-            maxFileSize: 2000 * 1024 * 1024    // 设置上传文件大小最大限制，默认2M
-        }
-    }))
+// const koaBody = require('koa-body'); //解析上传文件的插件
+// app.use(koaBody({
+//         multipart: true,
+//         formidable: {
+//             maxFileSize: 2000 * 1024 * 1024    // 设置上传文件大小最大限制，默认2M
+//         }
+//     }))
 
 //引入中间件
 const err= require("./middleware/error");

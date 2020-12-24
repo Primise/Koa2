@@ -34,7 +34,7 @@ let Article = sequelize.define('articles', {
   content:{
     type:Sequelize.TEXT,
   },
-  image_url:Sequelize.STRING,
+  cover:Sequelize.STRING,
   create_time: {
     type: Sequelize.DATE,
     field: 'create_time',

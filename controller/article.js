@@ -2,7 +2,7 @@
  * @Description:
  * @Author: primsie7
  * @Date: 2020-11-19 11:16:16
- * @LastEditTime: 2020-12-20 21:27:01
+ * @LastEditTime: 2020-12-23 22:37:47
  */
 const ArticleModel = require("../model/article");
 const Op = require('sequelize').Op
@@ -40,7 +40,7 @@ class Article {
       description,
       // article_id,
       tag,
-      // cover,
+      cover,
       content,
     }= ctx.request.body;
     let params = {
@@ -49,7 +49,7 @@ class Article {
       description,
       // article_id,
       tag,
-      // cover,
+      cover,
       content,
   };
     const [article,created] = await ArticleModel.findOrCreate({
