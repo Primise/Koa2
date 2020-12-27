@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-25 22:40:53
- * @LastEditTime: 2020-12-19 23:31:52
+ * @LastEditTime: 2020-12-27 20:52:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\middleware\error.js
@@ -11,7 +11,7 @@ const util = require("util")//工具类
 
 const verify = util.promisify(jwt.verify);
 
-const secret= "blog";
+const {JWT_SECRET}  =require("../utils/config")
 
 
 /**
@@ -24,7 +24,7 @@ module.exports = function(){
       if(token){
         let payload;
          try {
-          payload = await verify(token,split(" ")[1],secret);
+          payload = await verify(token.split(" ")[1],JWT_SECRET);
           ctx.user={
             user_name:payload.user_name,
             admin:payload.admin

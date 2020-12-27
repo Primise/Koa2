@@ -2,7 +2,7 @@
  * @Description:
  * @Author: primsie7
  * @Date: 2020-11-19 11:16:16
- * @LastEditTime: 2020-12-23 22:37:47
+ * @LastEditTime: 2020-12-27 20:52:15
  */
 const ArticleModel = require("../model/article");
 const Op = require('sequelize').Op
@@ -33,7 +33,6 @@ class Article {
     ctx.success(data.rows,page, "操作成功");
   }
   static async articleAdd(ctx){
-    console.log(ctx.request.body)
     const {
       title,
       author,
@@ -52,6 +51,7 @@ class Article {
       cover,
       content,
   };
+
     const [article,created] = await ArticleModel.findOrCreate({
       where:{
         title:{
@@ -61,7 +61,7 @@ class Article {
       defaults:{...params}
     });
     if(created){
-      ctx.success(0,null,"新增成功")
+      ctx.success(article.article_id,null,"新增成功")
     }else{
       ctx.fail("字段已存在",-1)
     }

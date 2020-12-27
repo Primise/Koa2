@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 21:14:46
- * @LastEditTime: 2020-12-22 11:05:27
+ * @LastEditTime: 2020-12-27 16:02:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\routes\index.js
@@ -53,4 +53,35 @@ router.post('/category/add', CategoryServer.addCategory)
  */
  router.post("/image/upload",UploadServer.upload)
  router.get("/token",UploadToken.token)
+
+
+
+
+
+
+
+
+
+
+ /**
+ *  前端博客web使用的接口，无权限校验
+ */
+// blog - 文章列表
+router.get('/article/weblist', Article.getArticleList);
+// blog - 热门文章列表
+// Routers.get('/article/webhotlist', Article.webhotlist);
+// // blog - 文章详情
+// Routers.get('/article/webdetail/:id', Article.detail);
+// // blog - 分类列表
+// Routers.get('/category/weblist', Category.list);
+// // blog - 个人分类列表
+// Routers.get('/articletocategory/list', ArticleToCategory.list);
+// // blog - 评论列表
+// Routers.get('/comment/weblist', Comment.weblist);
+// // blog - 评论创建
+// Routers.post('/comment/webcreate', Comment.webcreate);
+// // blog - 文章评论列表
+// Routers.get('/articlecomment/weblist', ArticleComment.weblist);
+// // blog - 创建文章评论
+// Routers.post('/articlecomment/webcreate', ArticleComment.webcreate);
 module.exports =router;

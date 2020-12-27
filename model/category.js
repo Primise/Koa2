@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-19 22:23:36
- * @LastEditTime: 2020-12-20 14:27:18
+ * @LastEditTime: 2020-12-27 14:36:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\model\category.js
@@ -26,7 +26,8 @@ let Category = sequelize.define('blog_category', {
     allowNull: false
   },
   sort: {
-    type: DataTypes.STRING(100)
+    type: DataTypes.STRING(100),
+    defaultValue: 0
   },
   category_name: {
     type: DataTypes.STRING(100),

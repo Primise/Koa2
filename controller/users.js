@@ -1,14 +1,16 @@
 /*
  * @Author: your name
- * @Date: 2020-11-14 14:52:20
- * @LastEditTime: 2020-12-21 09:52:36
+ * @Date: 2020-12-22 22:13:56
+ * @LastEditTime: 2020-12-27 19:56:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\controller\users.js
  */
+
 const User = require('../model/user');
 const Op = require('sequelize').Op;
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const {JWT_SECRET }  = require("../utils/config")
 /**
  * 登录
  * @params数据
@@ -32,8 +34,7 @@ const login = async (ctx) => {
       username: user_name,
       admin: true
     }
-    // ctx.session.userInfo= data; 
-    const token = jwt.sign(payload, "blog", { expiresIn: '1h' });
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
     data.token = token;
     ctx.success(data)
   } else {

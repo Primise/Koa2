@@ -1,4 +1,5 @@
 
+
 const {Sequelize,DataTypes} = require('sequelize');
 const sequelize = require('../sequelize');
 const moment  =require('moment')
@@ -40,7 +41,7 @@ let Article = sequelize.define('articles', {
     field: 'create_time',
     defaultValue:Sequelize.NOW,
     get() {
-      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+      return moment(this.getDataValue('create_time')).format('YYYY-MM-DD HH:mm:ss');
     },
   },
   update_time: {
@@ -51,7 +52,10 @@ let Article = sequelize.define('articles', {
       return moment(this.getDataValue('update_time')).format('YYYY-MM-DD HH:mm:ss')
     }
   },
-  is_delete:Sequelize.STRING
+  is_delete:{
+    type:Sequelize.STRING,
+    defaultValue:0
+  }
 },
   {
     // freezeTabelName 为 true 时不会在库中映射表时增加复数表名

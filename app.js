@@ -4,7 +4,7 @@
  * @Author: primsie7
  * @Date: 2020-11-17 09:12:08
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-12-24 23:22:12
+ * @LastEditTime: 2020-12-27 19:58:32
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -13,7 +13,8 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-const jwtKoa  = require("koa-jwt")
+const koajwt   = require("koa-jwt")
+const {JWT_SECRET} = require('./utils/config')
 const cors = require("koa-cors");
 // const koaBody = require('koa-body'); //解析上传文件的插件
 // app.use(koaBody({
@@ -56,7 +57,6 @@ app.keys = ['im a newer secret', 'i like turtle'];
 const index = require('./routes/index')
 
 
-
 const response = require('./middleware/response')
 
 // error handler
@@ -79,11 +79,14 @@ app.use(views(__dirname + '/views', {
 }))
 
 // 去除一些不需要通过jwt验证的接口
-
 app.use(
-  jwtKoa({secret:"blog"}).unless({
-    // path:[/^\/api\/login/,/^\/api\/register/]
-    path: [/^\/api\/login/, /^\/api\//]
+  koajwt({secret:JWT_SECRET}).unless({
+    path: [
+      /^\/api\/login/, 
+      // /^\/api\//,
+      // 查看文章列表
+      /^\/api\/article\/weblist/,
+    ]
   })
 )
 

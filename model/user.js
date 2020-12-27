@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 22:19:11
- * @LastEditTime: 2020-12-19 23:36:56
+ * @LastEditTime: 2020-12-27 19:56:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\model\user.js
@@ -12,6 +12,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../sequelize');
 const Model = Sequelize.Model;
+
 
 
 
