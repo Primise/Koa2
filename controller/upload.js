@@ -2,7 +2,7 @@
  * @Description: 上传图片
  * @Author: primsie7
  * @Date: 2020-12-03 11:09:47
- * @LastEditTime: 2020-12-24 23:26:01
+ * @LastEditTime: 2021-01-02 22:47:34
  */
 const fs = require("fs");
 const path = require("path");
@@ -117,9 +117,27 @@ function uploadFile (ctx, options) {
   console.log('文件上传中...')
   return new Promise((resolve, reject) => {
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-      const fileName = Rename(filename)
-      const saveTo = path.join(path.join(filePath, fileName))
-      file.pipe(fs.createWriteStream(saveTo))
+      // const fileName = Rename(filename)
+      // const saveTo = path.join(path.join(filePath, fileName))
+      console.log(fieldname)
+      const patt = /\.(jpg|jpeg|png|bmp|BMP|JPG|PNG|JPEG)$/
+			const isPic = patt.test(filename)
+
+			if (options.isImg) {
+				if (!isPic) {
+					resolve(new ErrorModel({
+						message: '文件格式非图片类型'
+					}))
+					return
+				}
+			}
+
+			let fileName = filename
+			let _uploadFilePath = path.join(filePath, fileName)
+			let saveTo = path.join(_uploadFilePath)
+
+			// 文件保存到制定路径
+			file.pipe(fs.createWriteStream(saveTo))
       file.on('end', function () {
         console.log('end')
         resolve({
