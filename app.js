@@ -4,7 +4,7 @@
  * @Author: primsie7
  * @Date: 2020-11-17 09:12:08
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-12-27 19:58:32
+ * @LastEditTime: 2021-01-03 16:10:02
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -86,6 +86,7 @@ app.use(
       // /^\/api\//,
       // 查看文章列表
       /^\/api\/article\/weblist/,
+      /^\/api\/article\/webdetail/,
     ]
   })
 )

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: primsie7
  * @Date: 2020-11-19 11:16:16
- * @LastEditTime: 2020-12-27 20:52:15
+ * @LastEditTime: 2021-01-03 16:33:20
  */
 const ArticleModel = require("../model/article");
 const Op = require('sequelize').Op
@@ -17,53 +17,89 @@ class Article {
    * @memberof Article
    */
   static async getArticleList(ctx) {
-    const {page_index,page_size} = ctx.query;
-    const _page_index= page_index||1;
-    const _page_size= page_size||10;
+    const { page_index, page_size } = ctx.query;
+    const _page_index = page_index || 1;
+    const _page_size = page_size || 10;
     const data = await ArticleModel.findAndCountAll({
-      where:{},
-      limit:_page_size,
-      offset:(_page_index-1)*_page_size
+      where: {},
+      limit: _page_size,
+      offset: (_page_index - 1) * _page_size
     });
-    let page={
-      page_index:_page_size,
-      page_size:_page_index,
-      total:data.count
+    let page = {
+      page_index: _page_size,
+      page_size: _page_index,
+      total: data.count
     }
-    ctx.success(data.rows,page, "操作成功");
+    ctx.success(data.rows, page, "操作成功");
   }
-  static async articleAdd(ctx){
+  static async articleAdd(ctx) {
     const {
       title,
       author,
       description,
-      // article_id,
       tag,
       cover,
       content,
-    }= ctx.request.body;
+    } = ctx.request.body;
     let params = {
       title,
       author,
       description,
-      // article_id,
       tag,
       cover,
       content,
-  };
+    };
 
-    const [article,created] = await ArticleModel.findOrCreate({
-      where:{
-        title:{
-          [Op.eq]:params.title
+    const [article, created] = await ArticleModel.findOrCreate({
+      where: {
+        title: {
+          [Op.eq]: params.title
         }
       },
-      defaults:{...params}
+      defaults: { ...params }
     });
-    if(created){
-      ctx.success(article.article_id,null,"新增成功")
-    }else{
-      ctx.fail("字段已存在",-1)
+    if (created) {
+      ctx.success(article.article_id, null, "新增成功")
+    } else {
+      ctx.fail("字段已存在", -1)
+    }
+  }
+
+  static async detail(ctx) {
+    // 文章ID
+    let { id } = ctx.params;
+    console.log(id)
+    // 检测是否传入ID
+    //  if (!id || isNaN(id)) {
+    //      ctx.response.status = 412;
+    //      ctx.body = {
+    //          code: 412,
+    //          message: `请传入正确的用户ID`,
+    //      };
+    //      return false;
+    //  }
+
+    try {
+      let data = await ArticleModel.findOne({
+        where:{
+          article_id:id
+        }
+      });
+      console.log(data)
+      if (data !== null) {
+        // 浏览次数增加1
+         let read_count = data.read_count + 1;
+         await ArticleModel.update({read_count},{
+           where:{
+             article_id:id
+           }
+         });
+      }
+
+      ctx.success(data, null, "新增成功")
+    } catch (err) {
+      console.log(err)
+      ctx.fail(err, 500)
     }
   }
 }

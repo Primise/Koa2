@@ -2,7 +2,7 @@
  * @Description: 上传图片
  * @Author: primsie7
  * @Date: 2020-12-03 11:09:47
- * @LastEditTime: 2021-01-02 22:47:34
+ * @LastEditTime: 2021-01-02 23:25:52
  */
 const fs = require("fs");
 const path = require("path");
@@ -197,7 +197,6 @@ class UploadServer {
           fileType: QINIU.bucket,
           path: serverPath
         })
-        console.log(result)
         const imgPath = path.join(serverPath, result.imgPath)
         // 上传到七牛
       const qiniu = await upToQiniu(imgPath, result.imgKey)

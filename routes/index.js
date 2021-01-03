@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 21:14:46
- * @LastEditTime: 2020-12-27 16:02:58
+ * @LastEditTime: 2021-01-03 16:00:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\routes\index.js
@@ -71,7 +71,7 @@ router.get('/article/weblist', Article.getArticleList);
 // blog - 热门文章列表
 // Routers.get('/article/webhotlist', Article.webhotlist);
 // // blog - 文章详情
-// Routers.get('/article/webdetail/:id', Article.detail);
+router.get('/article/webdetail/:id', Article.detail);
 // // blog - 分类列表
 // Routers.get('/category/weblist', Category.list);
 // // blog - 个人分类列表

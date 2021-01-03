@@ -35,7 +35,6 @@ module.exports = function(){
       }
       await next(); 
     }catch(err){
-      console.log(err)
       if(err.status=== 401){
         ctx.status= 401;
         ctx.body={
