@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 21:14:46
- * @LastEditTime: 2021-01-03 16:00:16
+ * @LastEditTime: 2021-01-10 22:16:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Koa2\routes\index.js
@@ -39,7 +39,7 @@ router.get('/article/list', Article.getArticleList)
 //详情
 // router.get('/article/detail:id', Article.articleDetail)
 router.post('/article/add', Article.articleAdd)
-// router.get('/article/list', Article.getArticleList)
+router.post('/article/delete/:id', Article.delete)
 
 /**
  * Category 文章

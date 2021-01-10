@@ -2,7 +2,7 @@
  * @Description:
  * @Author: primsie7
  * @Date: 2020-11-19 11:16:16
- * @LastEditTime: 2021-01-03 16:33:20
+ * @LastEditTime: 2021-01-10 22:27:34
  */
 const ArticleModel = require("../model/article");
 const Op = require('sequelize').Op
@@ -21,7 +21,9 @@ class Article {
     const _page_index = page_index || 1;
     const _page_size = page_size || 10;
     const data = await ArticleModel.findAndCountAll({
-      where: {},
+      where: {
+        is_delete:0
+      },
       limit: _page_size,
       offset: (_page_index - 1) * _page_size
     });
@@ -70,14 +72,10 @@ class Article {
     let { id } = ctx.params;
     console.log(id)
     // 检测是否传入ID
-    //  if (!id || isNaN(id)) {
-    //      ctx.response.status = 412;
-    //      ctx.body = {
-    //          code: 412,
-    //          message: `请传入正确的用户ID`,
-    //      };
-    //      return false;
-    //  }
+     if (!id || isNaN(id)) {
+         ctx.fail('请传入正确的用户ID',400)
+         return false;
+     }
 
     try {
       let data = await ArticleModel.findOne({
@@ -100,6 +98,24 @@ class Article {
     } catch (err) {
       console.log(err)
       ctx.fail(err, 500)
+    }
+  }
+
+  static async delete(ctx){
+    let {id} = ctx.params;
+    let is_delete=1;
+    try {
+      await ArticleModel.update({is_delete}, {
+        where: {
+          article_id:id,
+        },
+        fields: ['is_delete'],
+    });;
+      // let data = await ArticleModel.detail(id);
+       ctx.success(0,null,'删除成功')
+    } catch (error) {
+      console.log(error)
+      ctx.fail('删除失败',-1)
     }
   }
 }
