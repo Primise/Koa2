@@ -32,7 +32,7 @@
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "qiniu": "^7.3.2",
     "sequelize": "^6.3.5",
     "swagger-decorator": "^0.0.22",
