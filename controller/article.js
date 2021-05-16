@@ -70,9 +70,10 @@ class Article {
   static async detail(ctx) {
     // 文章ID
     let { id } = ctx.params;
-    console.log(id)
+
     // 检测是否传入ID
-     if (!id || isNaN(id)) {
+     if (!id || !isNaN(id)) {
+
          ctx.fail('请传入正确的用户ID',400)
          return false;
      }
@@ -94,7 +95,7 @@ class Article {
          });
       }
 
-      ctx.success(data, null, "新增成功")
+      ctx.success(data, null, "查询成功")
     } catch (err) {
       console.log(err)
       ctx.fail(err, 500)

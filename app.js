@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: primsie7
- * @Date: 2020-11-17 09:12:08
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-01-03 16:10:02
- */
+
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -16,6 +9,9 @@ const logger = require('koa-logger')
 const koajwt   = require("koa-jwt")
 const {JWT_SECRET} = require('./utils/config')
 const cors = require("koa-cors");
+
+const koaSwagger = require('koa2-swagger-ui');
+const swagger = require("./swagger");
 // const koaBody = require('koa-body'); //解析上传文件的插件
 // app.use(koaBody({
 //         multipart: true,
@@ -62,6 +58,13 @@ const response = require('./middleware/response')
 // error handler
 onerror(app)
 
+app.use(koaSwagger.koaSwagger({
+  routePrefix:'/swagger',
+  swaggerOptions:{
+    url:'/swagger.json'
+  }
+}));
+app.use(swagger.routes(),swagger.allowedMethods())
 // middlewares
 app.use(err());
 app.use(cors())
