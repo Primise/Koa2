@@ -29,7 +29,7 @@
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.0",
     "koa2-swagger-ui": "^5.1.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "pug": "^2.0.3",
